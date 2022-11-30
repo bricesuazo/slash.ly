@@ -1,5 +1,6 @@
 import "./globals.css";
 import { Poppins } from "@next/font/google";
+import { AnalyticsWrapper } from "./components/analytics";
 
 const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -12,7 +13,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={poppins.className}>
       <head />
-      <body>{children}</body>
+      <body>
+        {children}
+        <AnalyticsWrapper />
+      </body>
     </html>
   );
 }
