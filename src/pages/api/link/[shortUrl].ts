@@ -1,31 +1,48 @@
-import type { NextApiRequest, NextApiResponse } from "next";
-import { TRPCError } from "@trpc/server";
-import { getHTTPStatusCodeFromError } from "@trpc/server/http";
-import { createContext } from "../../../server/trpc/context";
-import { appRouter } from "../../../server/trpc/router/_app";
+import { NextApiRequest, NextApiResponse } from "next";
 
-const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  // Create context and caller
-  const ctx = await createContext({ req, res });
-  const caller = appRouter.createCaller(ctx);
-  try {
-    const { shortUrl } = req.query;
-    if (!shortUrl || typeof shortUrl !== "string") {
-      res.status(400).json({ message: "Invalid url" });
-      throw new Error("Invalid url");
-    }
-    const link = await caller.link.visitLink(shortUrl);
-    res.status(200).json(link);
-  } catch (cause) {
-    if (cause instanceof TRPCError) {
-      // An error from tRPC occured
-      const httpCode = getHTTPStatusCodeFromError(cause);
-      return res.status(httpCode).json(cause);
-    }
-    // Another error occured
-    console.error(cause);
-    res.status(500).json({ message: "Internal server error" });
+import { prisma } from "../../../server/db/client";
+
+export default async (req: NextApiRequest, res: NextApiResponse) => {
+  const shortUrl = req.query["shortUrl"];
+
+  if (!shortUrl || typeof shortUrl !== "string") {
+    res.statusCode = 404;
+
+    res.send(JSON.stringify({ message: "pls use with a slug" }));
+
+    return;
   }
-};
 
-export default handler;
+  const data = await prisma.link.findFirst({
+    where: {
+      shortUrl: {
+        equals: shortUrl,
+      },
+    },
+  });
+
+  if (!data) {
+    res.statusCode = 404;
+
+    res.send(JSON.stringify({ message: "slug not found" }));
+
+    return;
+  }
+
+  res.setHeader("Content-Type", "application/json");
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Cache-Control", "s-maxage=1000000000, stale-while-revalidate");
+
+  await prisma.link.update({
+    where: {
+      id: data.id,
+    },
+    data: {
+      clicks: {
+        increment: 1,
+      },
+    },
+  });
+
+  return res.json(data);
+};
