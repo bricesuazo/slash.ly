@@ -18,5 +18,8 @@ const config = {
     locales: ["en"],
     defaultLocale: "en",
   },
+  // modularizeImports: {
+  //   "react-icons": { transform: "react-icons/{{member}}" },
+  // },
 };
 export default config;
