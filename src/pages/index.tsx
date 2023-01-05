@@ -12,7 +12,7 @@ export default function Home() {
         href="https://app.jib.im/login"
         className="flex w-full items-center justify-center gap-x-2 rounded-md bg-gray-700 px-4 py-2 sm:w-fit"
       >
-        <span>Login</span> <FaSignInAlt />
+        Login <FaSignInAlt />
       </Link>
 
       {/* <div className="relative w-full">
