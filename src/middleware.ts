@@ -7,12 +7,7 @@ export async function middleware(req: NextRequest) {
     `${req.nextUrl.origin}/api/link/${shortUrl}`
   );
   if (shortUrlFetch.status === 404) {
-    return;
-    // console.log(
-    //   "🚀 ~ file: middleware.ts:12 ~ middleware ~ req.nextUrl.origin",
-    //   `${req.nextUrl.origin}/${shortUrl}`
-    // );
-    // return NextResponse.redirect(`${req.nextUrl.origin}/${shortUrl}`);
+    return NextResponse.redirect(`${req.nextUrl.origin}/${shortUrl}`);
   }
   const data = await shortUrlFetch.json();
 
