@@ -1,8 +1,8 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import type { NextApiRequest, NextApiResponse } from "next";
 
 import { prisma } from "../../../server/db/client";
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const shortUrl = req.query["shortUrl"];
 
   if (!shortUrl || typeof shortUrl !== "string") {
@@ -46,3 +46,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   return res.json(data);
 };
+
+export default handler;
