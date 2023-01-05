@@ -8,7 +8,7 @@ export default function Document() {
       <meta name="description" content="jib.im - link shortener" />
       <link rel="icon" href="/favicon.ico" />
       <Head />
-      <body>
+      <body className="text-white">
         <Main />
         <NextScript />
       </body>

@@ -1,28 +1,64 @@
-// import Image from "next/image";
+import Image from "next/image";
 import Link from "next/link";
-import { FaSignInAlt } from "react-icons/fa";
+import { FaGithub, FaSignInAlt, FaTwitter } from "react-icons/fa";
 
-export default function Home() {
+const Home = () => {
   return (
-    <section className="flex min-h-screen flex-col items-center justify-center gap-4 bg-[#15162c] px-4 text-center text-white">
-      <h1 className="text-4xl font-bold">Powerful link shortener.</h1>
-      <p className="text-gray-300">An open-source link shortener.</p>
+    <>
+      <section className="flex min-h-screen flex-col items-center justify-center gap-4 bg-gray-800 px-4 text-center">
+        <div className="space-y-2">
+          <h1 className="text-4xl font-bold">Powerful link shortener.</h1>
+          <p className="text-gray-300">An open-source link shortener.</p>
 
-      <Link
-        href="https://app.jib.im/login"
-        className="flex w-full items-center justify-center gap-x-2 rounded-md bg-gray-700 px-4 py-2 sm:w-fit"
-      >
-        Login <FaSignInAlt />
-      </Link>
+          <Link
+            href="https://app.jib.im/login"
+            className="mx-auto flex w-full items-center justify-center gap-x-2 rounded-md bg-gray-700 px-4 py-2 sm:w-fit"
+          >
+            Login <FaSignInAlt />
+          </Link>
+        </div>
 
-      {/* <div className="relative w-full">
-        <Image
-          src="/dashboard.png"
-          alt="Jib.im's dashboard"
-          fill
-          className="rounded-md"
-        />
-      </div> */}
-    </section>
+        <div className="relative mt-2 h-[14rem] w-full sm:mt-4 sm:h-[24rem] md:mt-8 md:h-[32rem] lg:h-[34rem]">
+          <Image
+            src="/images/dashboard.png"
+            alt="Jib.im's dashboard"
+            fill
+            className="object-contain"
+            priority
+          />
+        </div>
+      </section>
+      <footer className="bg-gray-900">
+        <section className="mx-auto flex max-w-screen-lg items-center justify-center gap-x-8 p-8">
+          <Link
+            href="https://jib.im/github"
+            className="transition-opacity hover:opacity-75"
+            target="_blank"
+          >
+            <FaGithub className="h-6 w-6" />
+          </Link>
+          <Link
+            href="https://jib.im"
+            className="relative overflow-hidden rounded-full border border-gray-700/50 transition-opacity hover:opacity-75"
+            target="_blank"
+          >
+            <Image
+              src="/images/jib-logo.png"
+              alt="jib.im Logo"
+              width={32}
+              height={32}
+            />
+          </Link>
+          <Link
+            href="https://jib.im/twitter"
+            className="transition-opacity hover:opacity-75"
+            target="_blank"
+          >
+            <FaTwitter className="h-6 w-6" />
+          </Link>
+        </section>
+      </footer>
+    </>
   );
-}
+};
+export default Home;
