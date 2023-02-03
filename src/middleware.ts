@@ -8,7 +8,6 @@ export async function middleware(req: NextRequest) {
   );
   if (shortUrlFetch.status === 404) {
     return;
-    // return NextResponse.redirect(`${req.nextUrl.origin}/${shortUrl}`);
   }
   const data = await shortUrlFetch.json();
 
@@ -18,5 +17,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: "/((?!api|_next/static|favicon.ico).*)",
+  matcher: "/((?!api|_next|static|public|favicon.ico).*)",
 };

@@ -3,6 +3,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "../../../utils/prisma";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+  console.log("🚀 ~ file: [shortUrl].ts:7 ~ handler ~ shortUrl", req.query);
   const shortUrl = req.query["shortUrl"];
 
   if (!shortUrl || typeof shortUrl !== "string") {
@@ -12,10 +13,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     return;
   }
-
-  res.setHeader("Content-Type", "application/json");
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  // res.setHeader("Cache-Control", "s-maxage=1000000000, stale-while-revalidate");
 
   const data = await prisma.link
     .update({
@@ -35,6 +32,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
       return;
     });
+
+  res.setHeader("Content-Type", "application/json");
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  // res.setHeader("Cache-Control", "s-maxage=1000000000, stale-while-revalidate");
 
   return res.json(data);
 };

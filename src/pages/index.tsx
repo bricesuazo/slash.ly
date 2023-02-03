@@ -19,7 +19,7 @@ const Home = () => {
         </div>
       </section>
       <footer className="bg-gray-900">
-        <section className="mx-auto flex max-w-screen-lg items-center justify-center  min-h-[10vh] gap-x-8 p-8">
+        <section className="mx-auto flex min-h-[10vh] max-w-screen-lg items-center  justify-center gap-x-8 p-8">
           <Link
             href="https://jib.im/github"
             className="transition-opacity hover:opacity-75"
@@ -33,7 +33,7 @@ const Home = () => {
             target="_blank"
           >
             <Image
-              src="/images/jib-logo.png"
+              src="https://raw.githubusercontent.com/jib-im/jib/main/public/images/jib-logo.png"
               alt="jib.im Logo"
               width={32}
               height={32}
