@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
-import { prisma } from "../../../server/db/client";
+import { prisma } from "../../../utils/prisma";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const shortUrl = req.query["shortUrl"];
