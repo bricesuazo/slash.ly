@@ -11,7 +11,7 @@ const Home = () => {
           <p className="text-gray-300">An open-source link shortener.</p>
 
           <Link
-            href="https://app.jib.im/login"
+            href="https://app.jib.im"
             className="mx-auto flex w-full items-center justify-center gap-x-2 rounded-md bg-gray-700 px-4 py-2 sm:w-fit"
           >
             Login <FaSignInAlt />

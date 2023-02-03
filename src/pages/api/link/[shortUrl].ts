@@ -13,36 +13,28 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     return;
   }
 
-  const data = await prisma.link.findFirst({
-    where: {
-      shortUrl: {
-        equals: shortUrl,
-      },
-    },
-  });
-
-  if (!data) {
-    res.statusCode = 404;
-
-    res.send(JSON.stringify({ message: "slug not found" }));
-
-    return;
-  }
-
   res.setHeader("Content-Type", "application/json");
   res.setHeader("Access-Control-Allow-Origin", "*");
   // res.setHeader("Cache-Control", "s-maxage=1000000000, stale-while-revalidate");
 
-  await prisma.link.update({
-    where: {
-      id: data.id,
-    },
-    data: {
-      clicks: {
-        increment: 1,
+  const data = await prisma.link
+    .update({
+      where: {
+        shortUrl,
       },
-    },
-  });
+      data: {
+        clicks: {
+          increment: 1,
+        },
+      },
+    })
+    .catch(() => {
+      res.statusCode = 404;
+
+      res.send(JSON.stringify({ message: "slug not found" }));
+
+      return;
+    });
 
   return res.json(data);
 };
