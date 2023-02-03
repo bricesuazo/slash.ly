@@ -4,7 +4,7 @@ export default function Document() {
   return (
     <Html>
       <title>Jib.im</title>
-      <meta content="width=device-width, initial-scale=1" name="viewport" />
+      <meta content="width=dece-width, initial-scale=1" name="viewport" />
       <meta name="description" content="jib.im - link shortener" />
       <link rel="icon" href="/favicon.ico" />
       <Head />

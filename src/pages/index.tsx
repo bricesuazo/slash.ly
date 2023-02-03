@@ -5,7 +5,7 @@ import { FaGithub, FaSignInAlt, FaTwitter } from "react-icons/fa";
 const Home = () => {
   return (
     <>
-      <section className="flex min-h-screen flex-col items-center justify-center gap-4 bg-gray-800 px-4 text-center">
+      <section className="flex min-h-[90vh] flex-col items-center justify-center gap-4 bg-gray-800 px-4 text-center">
         <div className="space-y-2">
           <h1 className="text-4xl font-bold">Powerful link shortener.</h1>
           <p className="text-gray-300">An open-source link shortener.</p>
@@ -17,19 +17,9 @@ const Home = () => {
             Login <FaSignInAlt />
           </Link>
         </div>
-
-        <div className="relative mt-2 h-[14rem] w-full sm:mt-4 sm:h-[24rem] md:mt-8 md:h-[32rem] lg:h-[34rem]">
-          <Image
-            src="/images/dashboard.png"
-            alt="Jib.im's dashboard"
-            fill
-            className="object-contain"
-            priority
-          />
-        </div>
       </section>
       <footer className="bg-gray-900">
-        <section className="mx-auto flex max-w-screen-lg items-center justify-center gap-x-8 p-8">
+        <section className="mx-auto flex max-w-screen-lg items-center justify-center  min-h-[10vh] gap-x-8 p-8">
           <Link
             href="https://jib.im/github"
             className="transition-opacity hover:opacity-75"
